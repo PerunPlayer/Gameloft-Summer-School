@@ -190,6 +190,16 @@ BuildingAI.prototype.OnRangeUpdate = function(msg)
 		if (cmpAttack.CanAttack(entity))
 			this.targetUnits.push(entity);
 
+	// Outposts signals when enemy entered in range
+	let isFoundEnemy = false;
+	if (!cmpAttack)
+		isFoundEnemy = false;
+
+	if (cmpAttack && !isFoundEnemy) {
+		isFoundEnemy = true;
+		warn("Entered");
+	}
+
 	// Remove targets outside of vision-range.
 	for (let entity of msg.removed)
 	{
