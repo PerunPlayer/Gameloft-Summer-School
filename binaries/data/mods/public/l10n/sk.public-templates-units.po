@@ -2568,11 +2568,11 @@ msgstr "Nesmrteľný"
 
 #: simulation/templates/units/pers/champion_infantry.xml:25
 msgid "Switch to using the bow and arrow."
-msgstr "Prepni na používanie luku a šípu."
+msgstr ""
 
 #: simulation/templates/units/pers/champion_infantry_archer.xml:17
 msgid "Switch to using a spear and shield."
-msgstr "Prepni na používanie kopije a štítu."
+msgstr ""
 
 #: simulation/templates/units/pers/hero_cyrus_ii.xml:9
 msgid "Cyrus II The Great"

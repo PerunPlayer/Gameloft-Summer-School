@@ -6,13 +6,12 @@
 # Adrian Chaves
 # Adrián Chaves Fernández
 # mandruis
-# Nicolás Gómez
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-06-10 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
-"Last-Translator: Nicolás Gómez, 2022\n"
+"Last-Translator: mandruis <manuiglesias96@yahoo.es>, 2016\n"
 "Language-Team: Galician (http://www.transifex.com/wildfire-games/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,7 +25,7 @@ msgstr ""
 #: simulation/templates/structures/sele/arsenal.xml:5
 #: simulation/templates/structures/spart/arsenal.xml:5
 msgid "Hoplothēkē"
-msgstr "Hoplothēkē"
+msgstr ""
 
 #: simulation/templates/structures/athen/barracks.xml:12
 #: simulation/templates/structures/mace/barracks.xml:12
@@ -34,7 +33,7 @@ msgstr "Hoplothēkē"
 #: simulation/templates/structures/sele/barracks.xml:12
 #: simulation/templates/structures/spart/barracks.xml:12
 msgid "Stratopedon"
-msgstr "Stratopedon"
+msgstr ""
 
 #: simulation/templates/structures/athen/civil_centre.xml:8
 #: simulation/templates/structures/mace/civil_centre.xml:8
@@ -42,7 +41,7 @@ msgstr "Stratopedon"
 #: simulation/templates/structures/sele/civil_centre.xml:5
 #: simulation/templates/structures/spart/civil_centre.xml:8
 msgid "Agora"
-msgstr "Agora"
+msgstr ""
 
 #: simulation/templates/structures/athen/corral.xml:5
 #: simulation/templates/structures/mace/corral.xml:5
@@ -50,7 +49,7 @@ msgstr "Agora"
 #: simulation/templates/structures/sele/corral.xml:5
 #: simulation/templates/structures/spart/corral.xml:5
 msgid "Epaulos"
-msgstr "Epaulos"
+msgstr ""
 
 #: simulation/templates/structures/athen/defense_tower.xml:9
 #: simulation/templates/structures/mace/defense_tower.xml:9
@@ -58,7 +57,7 @@ msgstr "Epaulos"
 #: simulation/templates/structures/sele/defense_tower.xml:9
 #: simulation/templates/structures/spart/defense_tower.xml:9
 msgid "Pyrgion"
-msgstr "Pyrgion"
+msgstr ""
 
 #: simulation/templates/structures/athen/dock.xml:12
 #: simulation/templates/structures/mace/dock.xml:12
@@ -66,7 +65,7 @@ msgstr "Pyrgion"
 #: simulation/templates/structures/sele/dock.xml:9
 #: simulation/templates/structures/spart/dock.xml:12
 msgid "Limēn"
-msgstr "Limēn"
+msgstr ""
 
 #: simulation/templates/structures/athen/farmstead.xml:11
 #: simulation/templates/structures/mace/farmstead.xml:11
@@ -74,7 +73,7 @@ msgstr "Limēn"
 #: simulation/templates/structures/sele/farmstead.xml:8
 #: simulation/templates/structures/spart/farmstead.xml:11
 msgid "Epoikion"
-msgstr "Epoikion"
+msgstr ""
 
 #: simulation/templates/structures/athen/field.xml:5
 #: simulation/templates/structures/mace/field.xml:5
@@ -82,7 +81,7 @@ msgstr "Epoikion"
 #: simulation/templates/structures/sele/field.xml:5
 #: simulation/templates/structures/spart/field.xml:5
 msgid "Agros"
-msgstr "Agros"
+msgstr ""
 
 #: simulation/templates/structures/athen/forge.xml:5
 #: simulation/templates/structures/mace/forge.xml:5
@@ -90,7 +89,7 @@ msgstr "Agros"
 #: simulation/templates/structures/sele/forge.xml:5
 #: simulation/templates/structures/spart/forge.xml:5
 msgid "Chalkeōn"
-msgstr "Chalkeōn"
+msgstr ""
 
 #: simulation/templates/structures/athen/fortress.xml:9
 #: simulation/templates/structures/mace/fortress.xml:9
@@ -111,7 +110,7 @@ msgstr "Ximnasio"
 
 #: simulation/templates/structures/athen/gymnasium.xml:24
 msgid "Train Champions."
-msgstr "Adestrar Campións"
+msgstr ""
 
 #: simulation/templates/structures/athen/house.xml:5
 #: simulation/templates/structures/mace/house.xml:5
@@ -119,7 +118,7 @@ msgstr "Adestrar Campións"
 #: simulation/templates/structures/sele/house.xml:8
 #: simulation/templates/structures/spart/house.xml:5
 msgid "Oikos"
-msgstr "Oikos"
+msgstr ""
 
 #: simulation/templates/structures/athen/market.xml:5
 #: simulation/templates/structures/mace/market.xml:5
@@ -127,7 +126,7 @@ msgstr "Oikos"
 #: simulation/templates/structures/sele/market.xml:5
 #: simulation/templates/structures/spart/market.xml:5
 msgid "Emporion"
-msgstr "Emporion"
+msgstr ""
 
 #: simulation/templates/structures/athen/outpost.xml:5
 #: simulation/templates/structures/mace/outpost.xml:5
@@ -135,7 +134,7 @@ msgstr "Emporion"
 #: simulation/templates/structures/sele/outpost.xml:5
 #: simulation/templates/structures/spart/outpost.xml:5
 msgid "Prophylagma"
-msgstr "Prophylagma"
+msgstr ""
 
 #: simulation/templates/structures/athen/prytaneion.xml:22
 msgid "Council Chamber"
@@ -147,13 +146,13 @@ msgstr "Pritaneo"
 
 #: simulation/templates/structures/athen/prytaneion.xml:24
 msgid "Train Heroes and research technologies."
-msgstr "Adestra heroes e investiga tecnoloxías"
+msgstr ""
 
 #: simulation/templates/structures/athen/prytaneion.xml:26
 #: simulation/templates/structures/gaul/assembly.xml:31
 #: simulation/templates/structures/spart/gerousia.xml:26
 msgid "Council"
-msgstr "Consello"
+msgstr ""
 
 #: simulation/templates/structures/athen/range.xml:8
 #: simulation/templates/structures/mace/range.xml:8
@@ -161,7 +160,7 @@ msgstr "Consello"
 #: simulation/templates/structures/sele/range.xml:8
 #: simulation/templates/structures/spart/range.xml:5
 msgid "Stratopedon tōn Psilōn"
-msgstr "Stratopedon tōn Psilōn"
+msgstr ""
 
 #: simulation/templates/structures/athen/sentry_tower.xml:5
 #: simulation/templates/structures/mace/sentry_tower.xml:5
@@ -169,7 +168,7 @@ msgstr "Stratopedon tōn Psilōn"
 #: simulation/templates/structures/sele/sentry_tower.xml:5
 #: simulation/templates/structures/spart/sentry_tower.xml:5
 msgid "Pyrgidion"
-msgstr "Pyrgidion"
+msgstr ""
 
 #: simulation/templates/structures/athen/stable.xml:5
 #: simulation/templates/structures/mace/stable.xml:5
@@ -177,7 +176,7 @@ msgstr "Pyrgidion"
 #: simulation/templates/structures/sele/stable.xml:5
 #: simulation/templates/structures/spart/stable.xml:5
 msgid "Hippōn"
-msgstr "Hippōn"
+msgstr ""
 
 #: simulation/templates/structures/athen/storehouse.xml:8
 #: simulation/templates/structures/mace/storehouse.xml:8
@@ -185,7 +184,7 @@ msgstr "Hippōn"
 #: simulation/templates/structures/sele/storehouse.xml:8
 #: simulation/templates/structures/spart/storehouse.xml:8
 msgid "Apothēkē"
-msgstr "Apothēkē"
+msgstr ""
 
 #: simulation/templates/structures/athen/temple.xml:9
 #: simulation/templates/structures/mace/temple.xml:9
@@ -194,7 +193,7 @@ msgstr "Apothēkē"
 #: simulation/templates/structures/sele/temple.xml:9
 #: simulation/templates/structures/spart/temple.xml:9
 msgid "Naos"
-msgstr "Naos"
+msgstr ""
 
 #: simulation/templates/structures/athen/theater.xml:5
 #: simulation/templates/structures/mace/theater.xml:5
@@ -220,7 +219,7 @@ msgstr "Pyrgíon"
 #: simulation/templates/structures/sele/wall_gate.xml:9
 #: simulation/templates/structures/spart/wall_gate.xml:9
 msgid "Pylai"
-msgstr "Pylai"
+msgstr ""
 
 #: simulation/templates/structures/athen/wall_long.xml:9
 #: simulation/templates/structures/athen/wall_medium.xml:9
@@ -243,7 +242,7 @@ msgstr "Pylai"
 #: simulation/templates/structures/spart/wall_short.xml:9
 #: simulation/templates/structures/spart/wallset_stone.xml:5
 msgid "Teichos"
-msgstr "Teichos"
+msgstr ""
 
 #: simulation/templates/structures/athen/wall_tower.xml:9
 #: simulation/templates/structures/mace/wall_tower.xml:9
@@ -251,11 +250,11 @@ msgstr "Teichos"
 #: simulation/templates/structures/sele/wall_tower.xml:9
 #: simulation/templates/structures/spart/wall_tower.xml:9
 msgid "Pyrgos"
-msgstr "Pyrgos"
+msgstr ""
 
 #: simulation/templates/structures/athen/wonder.xml:9
 msgid "Parthenōn"
-msgstr "Parthenōn"
+msgstr ""
 
 #: simulation/templates/structures/bench.xml:11
 msgid "Bench"
@@ -1861,7 +1860,7 @@ msgstr "Cívica"
 #: simulation/templates/template_structure_military_fortress.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Bow"
-msgstr "Arco"
+msgstr ""
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:75
 msgid "Civic Center"
@@ -2186,7 +2185,7 @@ msgstr "Embaixada"
 #: simulation/templates/template_structure_military_forge.xml:22
 #: simulation/templates/template_structure_military_forge.xml:26
 msgid "Forge"
-msgstr "Forxa"
+msgstr ""
 
 #: simulation/templates/template_structure_military_forge.xml:24
 msgid "Research attack damage and damage resistance technologies."
@@ -2217,7 +2216,7 @@ msgstr "Campo militar"
 #: simulation/templates/template_structure_military_stable.xml:26
 #: simulation/templates/template_structure_military_stable.xml:29
 msgid "Stable"
-msgstr "Establo"
+msgstr ""
 
 #: simulation/templates/template_structure_military_stable.xml:28
 msgid "Train Cavalry and research Cavalry technologies."
@@ -2258,7 +2257,7 @@ msgstr ""
 #: simulation/templates/template_structure_special_amphitheater.xml:18
 #: simulation/templates/template_structure_special_amphitheater.xml:20
 msgid "Amphitheater"
-msgstr "Anfiteatro"
+msgstr ""
 
 #: simulation/templates/template_structure_special_library.xml:25
 #: simulation/templates/template_structure_special_library.xml:27
@@ -2276,7 +2275,7 @@ msgstr ""
 #: simulation/templates/template_structure_special_theater.xml:25
 #: simulation/templates/template_structure_special_theater.xml:27
 msgid "Theater"
-msgstr "Teatro"
+msgstr ""
 
 #: simulation/templates/template_structure_wonder.xml:37
 #: simulation/templates/template_structure_wonder.xml:41

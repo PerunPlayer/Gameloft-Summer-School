@@ -6,13 +6,12 @@
 # Adrian Chaves
 # Adrián Chaves Fernández
 # mandruis
-# Nicolás Gómez
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-04-01 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:49+0000\n"
-"Last-Translator: Nicolás Gómez, 2022\n"
+"Last-Translator: mandruis <manuiglesias96@yahoo.es>, 2016\n"
 "Language-Team: Galician (http://www.transifex.com/wildfire-games/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -252,12 +251,12 @@ msgstr "Conversa privada"
 #: gui/session/chat/ChatHistory.js:132
 msgctxt "chat history filter"
 msgid "Game notifications"
-msgstr "Notificacións do xogo"
+msgstr ""
 
 #: gui/session/chat/ChatHistory.js:137
 msgctxt "chat history filter"
 msgid "Network notifications"
-msgstr "Notificacións da rede"
+msgstr ""
 
 #: gui/session/chat/ChatInput.js:36
 msgctxt "chat input"
@@ -351,12 +350,12 @@ msgstr "• %(user)s %(message)s"
 #: gui/session/chat/ChatMessageFormatSimulation.js:16
 #, javascript-format
 msgid "%(icon)sYour livestock has been attacked by %(attacker)s!"
-msgstr "%(icon)sO teu gando foi atacado por %(attacker)s!"
+msgstr ""
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:17
 #, javascript-format
 msgid "%(icon)sYou have been attacked by %(attacker)s!"
-msgstr "%(icon)sFoches atacado por %(attacker)s!"
+msgstr ""
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:27
 msgid "Click to focus on the attacked unit."
@@ -976,7 +975,7 @@ msgstr "Ganancia: %(gain)s"
 msgid ""
 "(%(number)s)\n"
 "%(time)s"
-msgstr "(%(number)s)\n%(time)s"
+msgstr ""
 
 #: gui/session/selection_details.js:283
 msgid "Current/max gatherers"
@@ -985,7 +984,7 @@ msgstr "Colectores actuais/máximos."
 #: gui/session/selection_details.js:315
 #, javascript-format
 msgid "(%(secondaryName)s)"
-msgstr "(%(secondaryName)s)"
+msgstr ""
 
 #: gui/session/selection_details.js:462
 msgid "Capture Points:"
@@ -994,11 +993,11 @@ msgstr "Puntos de captura:"
 #: gui/session/selection_details.js:470
 #, javascript-format
 msgid "%(label)s: %(details)s\n"
-msgstr "%(label)s: %(details)s\n"
+msgstr ""
 
 #: gui/session/selection_details.js:471
 msgid "Garrison Size"
-msgstr "Tamaño do acuartelamento"
+msgstr ""
 
 #: gui/session/selection_details.js:476
 #, javascript-format
@@ -1350,7 +1349,7 @@ msgstr "Preme para seleccionar unidades agrupadas, prema dúas veces seguidas pa
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
 msgid "Alpha XXVI: Zhuangzi"
-msgstr "Alpha XXVI: Zhuangzi"
+msgstr ""
 
 #: gui/session/top_panel/CivIcon.js:80
 #, javascript-format

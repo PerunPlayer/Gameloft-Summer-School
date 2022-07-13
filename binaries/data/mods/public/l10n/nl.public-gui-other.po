@@ -7002,7 +7002,7 @@ msgstr "Rekruteer Helers om uw troepen op het slagveld te genezen."
 
 #: gui/text/tips/temples.txt:4
 msgid "Research healing technologies."
-msgstr "Onderzoek geneeskunde."
+msgstr "Onderzoek genezings technologieën."
 
 #: gui/text/tips/temples.txt:5
 msgid "Its aura heals nearby units."

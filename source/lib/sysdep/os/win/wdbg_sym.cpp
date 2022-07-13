@@ -890,6 +890,10 @@ static Status dump_sym_base_type(DWORD type_id, const u8* p, DumpState& state)
 	// note: be very careful to correctly handle size=0 (e.g. void*).
 	for(size_t i = 0; i < size; i++)
 	{
+		if (!p)
+		{
+			break;
+		}
 		if(p[i] != 0xCC)
 			break;
 		if(i == size-1)
@@ -1661,6 +1665,9 @@ static BOOL CALLBACK dump_sym_cb(SYMBOL_INFOW* sym, ULONG UNUSED(size), PVOID us
 
 	out_latch_pos();	// see decl
 	const u8* p = (const u8*)(uintptr_t)sym->Address;
+	if (!p)				//continue when there's not address info (maybe inline function)
+		return TRUE;
+
 	DumpState state((uintptr_t)sym->ModBase, (LPSTACKFRAME64)userContext);
 
 	INDENT;
@@ -1678,7 +1685,6 @@ static BOOL CALLBACK dump_sym_cb(SYMBOL_INFOW* sym, ULONG UNUSED(size), PVOID us
 static Status dump_frame_cb(const STACKFRAME64* sf, uintptr_t UNUSED(userContext))
 {
 	void* func = (void*)(uintptr_t)sf->AddrPC.Offset;
-
 	wchar_t func_name[DEBUG_SYMBOL_CHARS]; wchar_t file[DEBUG_FILE_CHARS]; int line;
 	Status ret = ResolveSymbol_lk(func, func_name, file, &line);
 	if(ret == INFO::OK)
