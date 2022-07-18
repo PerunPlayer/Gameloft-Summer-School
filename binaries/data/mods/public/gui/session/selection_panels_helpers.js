@@ -253,7 +253,7 @@ function jumpCamera(index)
 	    Math.abs(cameraPivot.x - cameraSettings.x) < threshold &&
 	    Math.abs(cameraPivot.z - cameraSettings.z) < threshold)
 	{
-		Engine.CameraMoveTo(g_JumpCameraLast.x, g_JumpCameraLast.z);
+		Engine.SetCameraData(cameraSettings.x, cameraSettings.y, cameraSettings.z, cameraSettings.rotX, cameraSettings.rotY, cameraSettings.zoom);
 	}
 	else
 	{
