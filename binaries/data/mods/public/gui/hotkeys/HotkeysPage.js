@@ -159,10 +159,13 @@ class HotkeysPage
 			[
 				() => {},
 				() => {
-					for (let cat in this.categories)
-						this.categories[cat].hotkeys.forEach(([name, _]) => {
-							Engine.ConfigDB_RemoveValue("user", "hotkey." + name);
-						});
+					//for (let cat in this.categories)
+					//	this.categories[cat].hotkeys.forEach(([name, _]) => {
+					//		Engine.ConfigDB_RemoveValue("user", "hotkey." + name);
+					//	});
+					for (let hotkey in this.hotkeys) {
+						Engine.ConfigDB_RemoveValue("user", "hotkey." + hotkey)
+                    }
 					Engine.ConfigDB_WriteFile("user", "config/user.cfg");
 					Engine.ReloadHotkeys();
 					this.saveButton.enabled = false;

@@ -523,6 +523,8 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 			"arrowCount": cmpBuildingAI.GetArrowCount()
 		};
 
+	//let cmpEnemyAlert = Engine.QueryInterface(ent, )
+
 	if (cmpPosition && cmpPosition.GetTurretParent() != INVALID_ENTITY)
 		ret.turretParent = cmpPosition.GetTurretParent();
 

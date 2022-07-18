@@ -239,31 +239,32 @@ function formatBatchTrainingString(buildingsCountToTrainFullBatch, fullBatchSize
  */
 var g_JumpCameraPositions = [];
 var g_JumpCameraLast;
+var g_JumpCameraDataArray = [];
 
 function jumpCamera(index)
 {
-	let position = g_JumpCameraPositions[index];
-	if (!position)
+	let cameraSettings = g_JumpCameraDataArray[index];
+	if (!cameraSettings)
 		return;
 
 	let threshold = Engine.ConfigDB_GetValue("user", "gui.session.camerajump.threshold");
 	let cameraPivot = Engine.GetCameraPivot();
 	if (g_JumpCameraLast &&
-	    Math.abs(cameraPivot.x - position.x) < threshold &&
-	    Math.abs(cameraPivot.z - position.z) < threshold)
+	    Math.abs(cameraPivot.x - cameraSettings.x) < threshold &&
+	    Math.abs(cameraPivot.z - cameraSettings.z) < threshold)
 	{
 		Engine.CameraMoveTo(g_JumpCameraLast.x, g_JumpCameraLast.z);
 	}
 	else
 	{
 		g_JumpCameraLast = cameraPivot;
-		Engine.CameraMoveTo(position.x, position.z);
+		Engine.SetCameraData(cameraSettings.x, cameraSettings.y, cameraSettings.z, cameraSettings.rotX, cameraSettings.rotY, cameraSettings.zoom);
 	}
 }
 
 function setJumpCamera(index)
 {
-	g_JumpCameraPositions[index] = Engine.GetCameraPivot();
+	g_JumpCameraDataArray[index] = Engine.GetCameraSettings();
 }
 
 /**

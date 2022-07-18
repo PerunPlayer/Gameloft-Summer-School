@@ -162,6 +162,23 @@ CFixedVector3D GetTerrainAtScreenPoint(int x, int y)
 	return CFixedVector3D(fixed::FromFloat(pos.X), fixed::FromFloat(pos.Y), fixed::FromFloat(pos.Z));
 }
 
+JS::Value GetCameraSettings(const ScriptRequest& rq)
+{
+	CVector3D pos(-1, -1, -1);
+	CVector3D rot(0, 0, 0);
+	float zoom = 1;
+	if (g_Game && g_Game->GetView())
+	{
+		pos = g_Game->GetView()->GetCameraPosition();
+		rot = g_Game->GetView()->GetCameraRotation();
+		zoom = g_Game->GetView()->GetCameraZoom();
+	}
+
+	JS::RootedValue camSettings(rq.cx);
+	Script::CreateObject(rq, &camSettings, "x", pos.X, "y", pos.Y, "z", pos.Z, "rotX", rot.X, "rotY", rot.Y, "zoom", zoom);
+	return camSettings;
+}
+
 void RegisterScriptFunctions(const ScriptRequest& rq)
 {
 	RegisterScriptFunctions_Settings(rq);
@@ -174,5 +191,6 @@ void RegisterScriptFunctions(const ScriptRequest& rq)
 	ScriptFunction::Register<&CameraFollowFPS>(rq, "CameraFollowFPS");
 	ScriptFunction::Register<&GetFollowedEntity>(rq, "GetFollowedEntity");
 	ScriptFunction::Register<&GetTerrainAtScreenPoint>(rq, "GetTerrainAtScreenPoint");
+	ScriptFunction::Register<&GetCameraSettings>(rq, "GetCameraSettings");
 }
 }
