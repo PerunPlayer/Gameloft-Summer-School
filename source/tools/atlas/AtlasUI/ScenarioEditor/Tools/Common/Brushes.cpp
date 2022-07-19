@@ -30,8 +30,9 @@ static Brush* g_Brush_CurrentlyActive = NULL; // only one brush can be active at
 const float Brush::STRENGTH_MULTIPLIER = 1024.f;
 
 Brush::Brush()
-	: m_Shape(std::make_unique<BrushCircle>()), m_IsActive(false)
+	: m_IsActive(false)
 {
+	m_Shape.reset(new BrushCircle);
 }
 
 Brush::~Brush()
@@ -60,13 +61,19 @@ void Brush::Send()
 
 void Brush::SetCircle(int size)
 {
-	m_Shape = std::make_unique<BrushCircle>();
+	m_Shape.reset(new BrushCircle);
 	m_Shape->SetSize(size);
 }
 
 void Brush::SetSquare(int size)
 {
-	m_Shape = std::make_unique<BrushSquare>();
+	m_Shape.reset(new BrushSquare);
+	m_Shape->SetSize(size);
+}
+
+void Brush::SetPyramid(int size)
+{
+	m_Shape.reset(new BrushPyramid);;
 	m_Shape->SetSize(size);
 }
 
@@ -79,7 +86,7 @@ public:
 		: wxRadioBox(parent, wxID_ANY, _("Shape"), wxDefaultPosition, wxDefaultSize, shapes, 0, wxRA_SPECIFY_ROWS),
 		m_Brush(brush)
 	{
-		SetSelection(m_Brush.m_Shape->GetID());
+		SetSelection(0);
 	}
 
 private:
@@ -87,12 +94,15 @@ private:
 
 	void OnChange(wxCommandEvent& WXUNUSED(evt))
 	{
-		switch (m_Brush.m_Shape->GetID())
+		int n = m_Brush.m_Shape->GetID();
+		switch (GetSelection())
 		{
-		case 1: m_Brush.m_Shape = std::make_unique<BrushSquare>();
+		case 2: m_Brush.SetPyramid(16);
 			break;
-		case 0: 
-		default: m_Brush.m_Shape = std::make_unique<BrushCircle>();
+		case 1: m_Brush.SetSquare(16);
+			break;
+		case 0:
+		default: m_Brush.SetCircle(16);
 			break;
 		}
 		m_Brush.Send();
@@ -109,8 +119,8 @@ class BrushSizeCtrl : public wxSpinCtrl
 {
 public:
 	BrushSizeCtrl(wxWindow* parent, Brush& brush)
-		: wxSpinCtrl(parent, wxID_ANY, wxString::Format(_T("%d"), brush.m_Shape->GetSize()), 
-		wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 100, brush.m_Shape->GetSize()),
+		: wxSpinCtrl(parent, wxID_ANY, wxString::Format(_T("%d"), brush.m_Shape->GetSize()),
+			wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 100, brush.m_Shape->GetSize()),
 		m_Brush(brush)
 	{
 	}
@@ -136,7 +146,7 @@ class BrushStrengthCtrl : public wxSpinCtrl
 public:
 	BrushStrengthCtrl(wxWindow* parent, Brush& brush)
 		: wxSpinCtrl(parent, wxID_ANY, wxString::Format(_T("%d"), (int)(10.f * brush.m_Shape->GetStrength())),
-		wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 100, (int)(10.f * brush.m_Shape->GetStrength())),
+			wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 100, (int)(10.f * brush.m_Shape->GetStrength())),
 		m_Brush(brush)
 	{
 	}
@@ -163,6 +173,7 @@ void Brush::CreateUI(wxWindow* parent, wxSizer* sizer)
 	wxArrayString shapes; // Must match order of BrushShape enum
 	shapes.Add(_("Circle"));
 	shapes.Add(_("Square"));
+	shapes.Add(_("Pyramid"));
 	// TODO (maybe): get rid of the extra static box, by not using wxRadioBox
 	sizer->Add(new BrushShapeCtrl(parent, shapes, *this), wxSizerFlags().Expand());
 
@@ -180,16 +191,25 @@ void Brush::CreateUI(wxWindow* parent, wxSizer* sizer)
 
 std::vector<float> BrushCircle::GetData() const
 {
-	int width = GetDataWidth();
 	int height = GetDataHeight();
 
-	std::vector<float> data(width * height);
+	std::vector<float> data(height * height);
 	int n = 0;
-	for (size_t i = 0; i < height; i++)
+	// All calculations are done in units of half-tiles, since that
+	// is the required precision
+	int mid_x = height - 1;
+	int mid_y = height - 1;
+	for (int i = 0; i < height; i++)
 	{
-		for (size_t j = 0; j < width; j++)
+		for (int j = 0; j < height; j++)
 		{
-			data[n++] = 1.f -(abs((height / 2.0) - i) + abs((width / 2.0) - j)) / (height / sqrt(2));
+			float dist_sq = // scaled to 0 in centre, 1 on edge
+				((2 * i - mid_x) * (2 * i - mid_x) +
+					(2 * j - mid_y) * (2 * j - mid_y)) / (float)(height * height);
+			if (dist_sq <= 1.f)
+				data[n++] = (sqrtf(2.f - dist_sq) - 1.f) / (sqrt(2.f) - 1.f);
+			else
+				data[n++] = 0.f;
 		}
 	}
 
@@ -198,14 +218,36 @@ std::vector<float> BrushCircle::GetData() const
 
 std::vector<float> BrushSquare::GetData() const
 {
-	int width = GetDataWidth();
 	int height = GetDataHeight();
 
-	std::vector<float> data(width * height);
+	std::vector<float> data(height * height);
 	int i = 0;
 	for (int y = 0; y < height; ++y)
-		for (int x = 0; x < width; ++x)
+		for (int x = 0; x < height; ++x)
 			data[i++] = 1.f;
-	
+
+	return data;
+}
+
+std::vector<float> BrushPyramid::GetData() const
+{
+	int height = GetDataHeight();
+
+	std::vector<float> data(height * height);
+	float half = float(height) / 2;
+	int n = 0;
+	for (int i = 0; i < height; i++)
+	{
+		for (int j = 0; j < height; j++)
+		{
+			float northSouth = 1 - abs(half - i) / half;
+			float eastWest = 1 - abs(half - j) / half;
+			if (northSouth < eastWest)
+				data[n++] = northSouth;
+			else
+				data[n++] = eastWest;
+		}
+	}
+
 	return data;
 }
