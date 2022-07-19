@@ -186,7 +186,7 @@ BuildingAI.prototype.OnRangeUpdate = function (msg) {
         warn(cmpIdentity.GetGenericName());
         if (cmpIdentity.GetGenericName() == "Stone Tower") {
             //send message
-            
+            //trigger flare
         }
     }
 

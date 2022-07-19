@@ -24,6 +24,63 @@ class BrushStrengthCtrl;
 
 #include <vector>
 
+class BrushShape
+{
+public:
+	BrushShape() : m_Strength(1.f) {}
+	virtual ~BrushShape() {}
+
+	virtual int GetDataWidth() const = 0;
+	virtual int GetDataHeight() const = 0;
+	virtual std::vector<float> GetData() const = 0;
+
+	virtual float GetStrength() const { return this->m_Strength; }
+	virtual void SetStrength(float strength) { this->m_Strength = strength; }
+
+	virtual int GetSize() = 0;
+	virtual void SetSize(int size) = 0;
+
+	virtual int GetID() const = 0;
+private:
+	float m_Strength;
+};
+
+class BrushCircle : public BrushShape
+{
+public:
+	BrushCircle() : m_Size(16) {}
+	virtual ~BrushCircle() {}
+
+	virtual int GetDataWidth() const override { return m_Size; }
+	virtual int GetDataHeight() const override { return m_Size; }
+	virtual std::vector<float> GetData() const override;
+	virtual int GetSize() override { return m_Size; }
+	virtual void SetSize(int size) override { m_Size = ((size > 0) ? size : 4); }
+
+	static const int id = 0;
+	virtual int GetID() const override { return id; }
+private:
+	int m_Size;
+};
+
+class BrushSquare : public BrushShape
+{
+public:
+	BrushSquare() : m_Size(16) {}
+	virtual ~BrushSquare() {}
+
+	virtual int GetDataWidth() const override { return m_Size; }
+	virtual int GetDataHeight() const override { return m_Size; }
+	virtual std::vector<float> GetData() const override;
+	virtual int GetSize() override { return m_Size; }
+	virtual void SetSize(int size) override { m_Size = ((size > 0) ? size : 4); }
+
+	static const int id = 1;
+	virtual int GetID() const override { return id; }
+private:
+	int m_Size;
+};
+
 class Brush
 {
 	friend class BrushShapeCtrl;
@@ -35,15 +92,15 @@ public:
 
 	static const float STRENGTH_MULTIPLIER;
 
-	int GetWidth() const;
+	/*int GetWidth() const;
 	int GetHeight() const;
-	std::vector<float> GetData() const;
+	std::vector<float> GetData() const;*/
 
 	void SetCircle(int size);
 	void SetSquare(int size);
 
-	float GetStrength() const;
-	void SetStrength(float strength);
+	/*float GetStrength() const;
+	void SetStrength(float strength);*/
 
 	void CreateUI(wxWindow* parent, wxSizer* sizer);
 
@@ -55,10 +112,9 @@ private:
 	// If active, send SetBrush message to the game
 	void Send();
 
-	enum BrushShape { CIRCLE = 0, SQUARE};
-	BrushShape m_Shape;
-	int m_Size;
-	float m_Strength;
+	std::unique_ptr<BrushShape> m_Shape;
+	/*int m_Size;*/
+	/*float m_Strength;*/
 	bool m_IsActive;
 };
 
