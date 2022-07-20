@@ -77,6 +77,12 @@ void Brush::SetPyramid(int size)
 	m_Shape->SetSize(size);
 }
 
+void Brush::SetRidge(int size)
+{
+	m_Shape.reset(new BrushRidge);;
+	m_Shape->SetSize(size);
+}
+
 //////////////////////////////////////////////////////////////////////////
 
 class BrushShapeCtrl : public wxRadioBox
@@ -97,6 +103,8 @@ private:
 		int n = m_Brush.m_Shape->GetID();
 		switch (GetSelection())
 		{
+		case 3:m_Brush.SetRidge(16);
+			break;
 		case 2: m_Brush.SetPyramid(16);
 			break;
 		case 1: m_Brush.SetSquare(16);
@@ -174,6 +182,7 @@ void Brush::CreateUI(wxWindow* parent, wxSizer* sizer)
 	shapes.Add(_("Circle"));
 	shapes.Add(_("Square"));
 	shapes.Add(_("Pyramid"));
+	shapes.Add(_("Ridge"));
 	// TODO (maybe): get rid of the extra static box, by not using wxRadioBox
 	sizer->Add(new BrushShapeCtrl(parent, shapes, *this), wxSizerFlags().Expand());
 
@@ -240,12 +249,31 @@ std::vector<float> BrushPyramid::GetData() const
 	{
 		for (int j = 0; j < height; j++)
 		{
-			float northSouth = 1 - abs(half - i) / half;
-			float eastWest = 1 - abs(half - j) / half;
+			float northSouth = 1 - abs(half - j) / half;
+			float eastWest = 1 - abs(half - i) / half;
 			if (northSouth < eastWest)
 				data[n++] = northSouth;
 			else
 				data[n++] = eastWest;
+		}
+	}
+
+	return data;
+}
+
+std::vector<float> BrushRidge::GetData() const
+{
+	int height = GetDataHeight();
+
+	std::vector<float> data(height * height);
+	float half = float(height) / 2;
+	int n = 0;
+	for (int i = 0; i < height; i++)
+	{
+		for (int j = 0; j < height; j++)
+		{
+			float northSouth = 1 - abs(half - j) / half;
+				data[n++] = northSouth;
 		}
 	}
 
