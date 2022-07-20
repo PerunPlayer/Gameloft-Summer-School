@@ -207,12 +207,14 @@ BEGIN_COMMAND(NormalElevation)
 		int amount = (int)msg->amount;
 
 		ssize_t verts = m_TerrainDelta.GetVertsPerSide();
+		float delta = 1;
 
 		for (ssize_t dy = 0; dy < verts; ++dy)
 		{
 			for (ssize_t dx = 0; dx < verts; ++dx)
 			{
-				m_TerrainDelta.RaiseVertex(dx, dy, (int)(amount));
+				delta = sin(10.f * (dx * dx + dy * dy)) / 10;
+				m_TerrainDelta.RaiseVertex(dx, dy, (int)(amount * delta));
 			}
 		}
 
