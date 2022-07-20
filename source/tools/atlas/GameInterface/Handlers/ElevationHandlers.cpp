@@ -30,12 +30,9 @@
 #include "maths/MathUtil.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpTerrain.h"
-#include "simulation2/helpers/Grid.h"
 
 #include "../Brushes.h"
 #include "../DeltaArray.h"
-
-#include <queue>
 
 namespace AtlasMessage {
 
@@ -208,10 +205,6 @@ BEGIN_COMMAND(NormalElevation)
 	void Do()
 	{
 		int amount = (int)msg->amount;
-
-		static CVector3D previousPosition;
-		g_CurrentBrush.m_Centre = msg->pos->GetWorldSpace(previousPosition);
-		previousPosition = g_CurrentBrush.m_Centre;
 
 		ssize_t verts = m_TerrainDelta.GetVertsPerSide();
 
