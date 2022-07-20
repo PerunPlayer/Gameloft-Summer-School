@@ -30,9 +30,12 @@
 #include "maths/MathUtil.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpTerrain.h"
+#include "simulation2/helpers/Grid.h"
 
 #include "../Brushes.h"
 #include "../DeltaArray.h"
+
+#include <queue>
 
 namespace AtlasMessage {
 
@@ -81,6 +84,11 @@ public:
 	u16 GetVertex(ssize_t x, ssize_t y)
 	{
 		return get(Clamp<ssize_t>(x, 0, m_VertsPerSide - 1), Clamp<ssize_t>(y, 0, m_VertsPerSide - 1));
+	}
+
+	ssize_t GetVertsPerSide()
+	{
+		return m_VertsPerSide - 1;
 	}
 
 protected:
@@ -179,6 +187,67 @@ BEGIN_COMMAND(AlterElevation)
 	}
 };
 END_COMMAND(AlterElevation)
+
+//////////////////////////////////////////////////////////////////////////
+
+BEGIN_COMMAND(NormalElevation)
+{
+	TerrainArray m_TerrainDelta;
+	ssize_t m_i0, m_j0, m_i1, m_j1; // dirtied tiles (inclusive lower bound, exclusive upper)
+
+	cNormalElevation()
+	{
+		m_TerrainDelta.Init();
+	}
+
+	void MakeDirty()
+	{
+		g_Game->GetWorld()->GetTerrain()->MakeDirty(m_i0, m_j0, m_i1, m_j1, RENDERDATA_UPDATE_VERTICES);
+	}
+
+	void Do()
+	{
+		int amount = (int)msg->amount;
+
+		static CVector3D previousPosition;
+		g_CurrentBrush.m_Centre = msg->pos->GetWorldSpace(previousPosition);
+		previousPosition = g_CurrentBrush.m_Centre;
+
+		ssize_t verts = m_TerrainDelta.GetVertsPerSide();
+
+		for (ssize_t dy = 0; dy < verts; ++dy)
+		{
+			for (ssize_t dx = 0; dx < verts; ++dx)
+			{
+				m_TerrainDelta.RaiseVertex(dx, dy, (int)(amount));
+			}
+		}
+
+		MakeDirty();
+	}
+
+	void Undo()
+	{
+		m_TerrainDelta.Undo();
+		MakeDirty();
+	}
+
+	void Redo()
+	{
+		m_TerrainDelta.Redo();
+		MakeDirty();
+	}
+
+	void MergeIntoPrevious(cNormalElevation* prev)
+	{
+		prev->m_TerrainDelta.OverlayWith(m_TerrainDelta);
+		prev->m_i0 = std::min(prev->m_i0, m_i0);
+		prev->m_j0 = std::min(prev->m_j0, m_j0);
+		prev->m_i1 = std::max(prev->m_i1, m_i1);
+		prev->m_j1 = std::max(prev->m_j1, m_j1);
+	}
+};
+END_COMMAND(NormalElevation)
 
 //////////////////////////////////////////////////////////////////////////
 

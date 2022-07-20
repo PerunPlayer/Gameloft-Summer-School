@@ -540,6 +540,11 @@ COMMAND(AlterElevation, MERGE,
 		((float, amount))
 		);
 
+COMMAND(NormalElevation, MERGE,
+	((Position, pos))
+	((float, amount))
+);
+
 COMMAND(SmoothElevation, MERGE,
 		((Position, pos))
 		((float, amount))
