@@ -547,13 +547,8 @@ int LongPathfinder::HasJumpedHoriz(int i, int j, int di, PathfinderState& state,
 {
 	if (m_UseJPSCache)
 	{
-		int jump;
-		if (di > 0)
-			jump = state.jpc->GetJumpPointRight(i, j, state.goal);
-		else
-			jump = state.jpc->GetJumpPointLeft(i, j, state.goal);
-
-		return jump;
+		return ((di > 0) ? state.jpc->GetJumpPointRight(i, j, state.goal) : 
+			               state.jpc->GetJumpPointLeft(i, j, state.goal));
 	}
 	else
 	{
@@ -625,13 +620,8 @@ int LongPathfinder::HasJumpedVert(int i, int j, int dj, PathfinderState& state, 
 {
 	if (m_UseJPSCache)
 	{
-		int jump;
-		if (dj > 0)
-			jump = state.jpc->GetJumpPointUp(i, j, state.goal);
-		else
-			jump = state.jpc->GetJumpPointDown(i, j, state.goal);
-
-		return jump;
+		return ((dj > 0) ? state.jpc->GetJumpPointUp(i, j, state.goal) :
+						   state.jpc->GetJumpPointDown(i, j, state.goal));
 	}
 	else
 	{
@@ -671,7 +661,10 @@ void LongPathfinder::AddJumpedDiag(int i, int j, int di, int dj, PathCost g, Pat
 
 	int ni = i + di;
 	int nj = j + dj;
-	bool detectGoal = OnTheWay(i, j, di, dj, state.iGoal, state.jGoal);
+
+	const u16 iGoal = state.iGoal;
+	const u16 jGoal = state.jGoal;
+	const bool detectGoal = OnTheWay(i, j, di, dj, iGoal, jGoal);
 	while (true)
 	{
 		// Stop if we hit an obstructed cell
@@ -690,9 +683,11 @@ void LongPathfinder::AddJumpedDiag(int i, int j, int di, int dj, PathCost g, Pat
 			ProcessNeighbour(i, j, ni, nj, g, state);
 			return;
 		}
-
-		int fi = HasJumpedHoriz(ni, nj, di, state, detectGoal && OnTheWay(ni, nj, di, 0, state.iGoal, state.jGoal));
-		int fj = HasJumpedVert(ni, nj, dj, state, detectGoal && OnTheWay(ni, nj, 0, dj, state.iGoal, state.jGoal));
+		
+		const bool goalI = OnTheWay(ni, nj, di, 0, iGoal, jGoal);
+		const bool goalJ = OnTheWay(ni, nj, 0, dj, iGoal, jGoal);
+		const int fi = HasJumpedHoriz(ni, nj, di, state, detectGoal && goalI);
+		const int fj = HasJumpedVert(ni, nj, dj, state, detectGoal && goalJ);
 		if (fi != ni || fj != nj)
 		{
 			ProcessNeighbour(i, j, ni, nj, g, state);
