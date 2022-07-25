@@ -273,6 +273,11 @@ function GetTemplateDataHelper(template, player, auraTemplates, modifiers = {})
 			"maxArrowCount": Math.round(getEntityValue("BuildingAI/MaxArrowCount"))
 		};
 
+	//if (template.EnemyAlert)
+	//	ret.EnemyAlert = {
+	//	"detectionAlarm": Math.round(getEntityValue("EnemyAlert/DetectionAlarm"))
+	//};
+
 	if (template.BuildRestrictions)
 	{
 		// required properties

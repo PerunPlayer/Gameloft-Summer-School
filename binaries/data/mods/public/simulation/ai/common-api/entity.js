@@ -427,13 +427,15 @@ m.Template = m.Class({
 
 	"getDefaultArrow": function() { return +this.get("BuildingAI/DefaultArrowCount"); },
 
-	"getArrowMultiplier": function() { return +this.get("BuildingAI/GarrisonArrowMultiplier"); },
+	"getArrowMultiplier": function () { return +this.get("BuildingAI/GarrisonArrowMultiplier"); },
 
 	"getGarrisonArrowClasses": function() {
 		if (!this.get("BuildingAI"))
 			return undefined;
 		return this.get("BuildingAI/GarrisonArrowClasses").split(/\s+/);
 	},
+
+	//"getDetectionAlarm": function () { return +this.get("EnemyAlert/DetectionAlarm"); },
 
 	"buffHeal": function() { return +this.get("GarrisonHolder/BuffHeal"); },
 

@@ -103,6 +103,11 @@
 			</RangeOverlay>
 		</Ranged>
 	</Attack>-->
+	<!--<BuildingAI>
+		<DefaultArrowCount>0</DefaultArrowCount>
+		<GarrisonArrowMultiplier>0</GarrisonArrowMultiplier>
+		<GarrisonArrowClasses>Infantry</GarrisonArrowClasses>
+	</BuildingAI>-->
 	<!--<EnemyAlert>
 		<DetectionAlarm>0</DetectionAlarm>
 	</EnemyAlert>-->
